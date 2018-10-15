@@ -19,7 +19,7 @@ gem 'kaminari' #paginacion
 gem 'kaminari-i18n'
 gem 'rails-i18n', '~> 5.1'
 gem "awesome_print", require:"ap" #consola
-
+gem 'rails_12factor', group: :production
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
