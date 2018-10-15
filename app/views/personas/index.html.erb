@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h3><%= fa_icon 'user-circle-o' %> Personas <small>Listado</small></h3>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-lg-6 col-centered">
+        <%= form_tag('personas', method: :get) do %>
+          <div class="input-group">
+            <input id="search" name="search" value="<%= params[:search] %>" type="text" class="form-control" placeholder="Buscar persona por nombre">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit"><%= fa_icon 'search', text: '' %></button>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-lg-6">
+        <%= link_to new_persona_path, class: 'btn btn-success pull-right' do %>
+          <%= fa_icon 'plus', text: 'Crear Persona' %>
+        <% end %>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr class="pretty" align="center">
+              <th><%= fa_icon 'vcard-o' %>&nbsp; Nombre</th>
+              <th colspan="3" align="center"> Acciones &nbsp;<%= fa_icon 'edit' %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @personas.each do |persona| %>
+              <tr>
+                <td align="center"><%= link_to persona.nombre.upcase, persona_path(persona) %></td>
+                <td align="center">
+                  <%= link_to persona_path(persona), class: 'btn btn-info btn-sm' do %>
+                    <%= fa_icon 'eye', text: 'Ver' %>
+                  <% end %>
+                  <%= link_to edit_persona_path(persona), class: 'btn btn-warning btn-sm' do %>
+                    <%= fa_icon 'pencil', text: 'Editar' %>
+                  <% end %>
+                  <%# link_to persona_path(persona), method: :delete, data: {confirm: '¿Está seguro que desea eliminar esta persona?'}, class: 'btn btn-danger btn-sm' do %>
+                    <%# fa_icon 'trash', text: 'Eliminar' %>
+                  <%# end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <%= page_entries_info @personas %>
+  </div>
+  <div class="panel-footer">
+    <%= paginate @personas %>
+  </div>
+</div>

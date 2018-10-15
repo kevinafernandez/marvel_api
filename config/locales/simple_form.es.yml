@@ -1,0 +1,10 @@
+es:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'Campo obligatorio'
+      mark: '(*)'
+      #html: '<i class="fa fa-check-square">Campo Obligatorio</i>'
+    error_notification:
+      default_message: "Hay los siguientes errores en el form"

@@ -11,6 +11,9 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym 'RESTful'
-# end
+ ActiveSupport::Inflector.inflections(:en) do |inflect|
+    inflect.irregular 'persona', 'personas'
+    inflect.irregular 'Persona', 'Personas'
+    inflect.irregular 'superheroe', 'superheroes'
+    inflect.irregular 'Superheroe', 'Superheroes'
+end

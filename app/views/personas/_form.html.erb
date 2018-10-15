@@ -1,0 +1,16 @@
+<%= simple_form_for(@persona, html: {class: 'form-horizontal'}, wrapper: :horizontal_form) do |f| %>
+    <div class="panel-body">
+      <div class="col-md-10">
+        <%= f.input :nombre, placeholder: 'Escriba el nombre de la persona' %>
+      </div>
+    </div>
+    <li class="divider"></li>
+    <div class="panel-footer">
+      <%= link_to personas_path, class: 'btn btn-danger' do %>
+        <%= fa_icon 'remove' %> Cancelar
+      <% end %>
+      <%= f.button :submit, class: 'btn btn-success' do %>
+        <%= fa_icon 'save', text: t(:save) %>
+      <% end %>
+    </div>
+<% end %>
