@@ -30,8 +30,10 @@ class PersonasController < ApplicationController
 
     respond_to do |format|
       if @persona.save
-        format.html { redirect_to @persona, notice: "La persona #{@persona.nombre.upcase} fue creada exitosamente" }
-        format.json { render :index }
+        format.html {  flash[:success] = "La persona #{@persona.nombre} fue creado exitósamente"
+                        redirect_to persona_path(@persona)
+        }
+        format.json { render :show, status: :created, location: @persona }
       else
         format.html { render :new }
         format.json { render json: @persona.errors, status: :unprocessable_entity }
@@ -44,8 +46,9 @@ class PersonasController < ApplicationController
   def update
     respond_to do |format|
       if @persona.update(persona_params)
-        format.html { redirect_to @persona, notice: 'Persona fue editado.' }
-        format.json { render :show, status: :ok, location: @persona }
+        format.html {  flash[:success] = "La persona #{@persona.nombre} fue editada exitósamente"
+                        redirect_to persona_path(@persona)
+         }
       else
         format.html { render :edit }
         format.json { render json: @persona.errors, status: :unprocessable_entity }

@@ -1,14 +1,7 @@
 body {
-  //background-image: url(/assets/marvel_fondo3.jpg);
-  background: image-url("/assets/marvel_fondo3.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size:100% 100vh;
-
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -16,7 +9,7 @@ body {
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 18px;
 }
 
@@ -27,16 +20,15 @@ pre {
 }
 
 a {
-  color: #ffffff !important;
-  margin-right: 30px !important;
+  color: #000;
 
   &:visited {
-    color: #ffffff;
+    color: #666;
   }
 
   &:hover {
     color: #fff;
-    background-color: #272c30;
+    background-color: #000;
   }
 }
 
@@ -84,82 +76,9 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
-    line-height: 18px;
   }
 }
 
 label {
   display: block;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #212529;
-  color: white;
-  text-align: center;
-}
-
-.page-header {
-  margin-top: 60px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-  color: white;
-  padding: 1px;
-  margin-bottom: 50px;
-}
-
-.page-header h3{
-  padding-left: 15px;
-}
-
-.page-header small{
-  padding-left: 10px;
-  font-size: 15px;
-  color: #dbd7d7;
-}
-.page-header i{
-  color: white;
-}
-
-.panel-body{
-  margin-top: 25px;
-  //background-image: linear-gradient(#343a40, #474f58, #4e5760);
-  //color: white;
-  //border-radius: 5px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.panel-default{
-  margin-top: 25px;
-  background-image: linear-gradient(#343a40, #474f58, #4e5760);
-  color: white;
-  border-radius: 5px;
-  margin-left:auto;
-  margin-right:auto;
-  padding: 16px;
-}
-
-.panel-footer{
-  margin-top: 15px;
-}
-
-table {
-    margin: 0 auto;
-}
-
-@media (max-width: 768px){
-  .panel-footer, .botones{
-    text-align: center;
-  }
-}
-
-.divider{
-  height: 1px;
-  margin: 2px 0;
-  overflow: hidden;
-  background-color: #272B30;
 }

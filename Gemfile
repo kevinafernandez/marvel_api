@@ -13,6 +13,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'marvel' #marvel gem
 gem "font-awesome-rails" #iconos
 gem 'simple_form' #formularios
 gem 'kaminari' #paginacion
