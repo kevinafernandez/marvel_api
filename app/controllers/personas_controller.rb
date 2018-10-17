@@ -5,8 +5,8 @@ class PersonasController < ApplicationController
   # GET /personas.json
   def index
     @personas = Persona.all
-    @personas = @personas.filter(params.slice(:search))
-    @personas = @personas.page params[:page]
+    @personas = @personas.filter(params.slice(:search)) #parametros para buscar por nombre
+    @personas = @personas.page params[:page] #paginacion
   end
 
   # GET /personas/1
@@ -61,7 +61,7 @@ class PersonasController < ApplicationController
   def destroy
     @persona.destroy
     respond_to do |format|
-      format.html { redirect_to personas_url, notice: 'Persona was successfully destroyed.' }
+      format.html { redirect_to personas_url, notice: 'Persona fue eliminada.' }
       format.json { head :no_content }
     end
   end

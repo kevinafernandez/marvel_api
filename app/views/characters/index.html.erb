@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h3><%= fa_icon 'file-text' %> Superheroes <small>Listado</small></h3>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="pretty" align="center">
+              <th> Imagen <%= fa_icon 'file-image-o' %></th>
+              <th> Nombre superheroe <%= fa_icon 'pencil-square-o' %></th>
+              <th  align="center"> Comics / Series / Eventos <%= fa_icon 'info-circle' %></th>
+            </tr>
+          </thead>
+          <tbody> 
+          	<% @characters.each do |character| %>
+	          	<tr> 
+		          	<td align="center"><%= image_tag character.thumbnail + '.jpg', width: 75, height: 75 %></td>
+		          	<td align="center"><%= character.name %></td>
+		          	<td align="center"><%= link_to character_path(character.character_id), class: 'btn btn-info btn-sm' do %>
+                    	<%= fa_icon 'eye', text: 'Ver detalles' %>
+                  	<% end %></td>
+			 	</tr>
+			<% end %>
+          </tbody>
+        </table>
+    </div>
+    <%# page_entries_info @characters %>
+  </div>
+  <div class="panel-footer">
+    <%# paginate @characters %>
+  </div>
+</div>
+
