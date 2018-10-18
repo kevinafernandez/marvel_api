@@ -9,15 +9,17 @@
           <tr class="pretty" align="center">
             <th> Imagen <%= fa_icon 'file-image-o' %></th>
             <th> Nombre <%= fa_icon 'pencil-square-o' %></th>
-            <th  align="center"> Comics / Series / Eventos <%= fa_icon 'info-circle' %></th>
+            <th> Poder de ataque <%= fa_icon 'battery-3' %></th>
+            <th> Comics / Series / Eventos <%= fa_icon 'info-circle' %></th>
           </tr>
         </thead>
         <tbody> 
         	<% @characters.each do |character| %>
-            <% @image_comic = Marvel.foto(character.id) %>
+            <% @image = Marvel.foto(character.id) %>
           	<tr> 
-	          	<td align="center"><%= image_tag @image_comic + '.jpg', width: 75, height: 75 %></td>
+	          	<td align="center"><%= image_tag @image + '.jpg', width: 75, height: 75 %></td>
 	          	<td align="center"><%= character.name %></td>
+              <td align= "center"><%= character.poder_ataque %></td>
 	          	<td align="center"><%= link_to character_path(character.id), class: 'btn btn-info btn-sm' do %>
                   	<%= fa_icon 'eye', text: 'Ver detalles' %>
                 	<% end %></td>

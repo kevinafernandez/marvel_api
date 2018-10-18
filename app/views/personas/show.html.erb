@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
-    <h4 class="pull-left">Nombre: <%= @persona&.nombre %></h4>
+    <h4 class="pull-left"><%= @persona&.nombre %></h4>
   </div>
   <div class="tabs">
     <ul style="color:white;" class="nav nav-tabs" role="tablist">
@@ -24,7 +24,7 @@
                 <td class="col-content"><%=@persona&.nombre%></td>
               </tr>
               <tr>
-                <td class="col-title"><%= fa_icon 'bar-chart'%> Poder de ataque</td>
+                <td class="col-title"><%= fa_icon 'bar-chart'%> Poder de ataque (1-100)</td>
                 <td class="col-content"><%=@persona&.poder_ataque%></td>
               </tr>
               <tr>

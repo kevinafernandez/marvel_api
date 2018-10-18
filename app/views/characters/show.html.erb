@@ -11,7 +11,7 @@
         <a href="#datos" role="tab" data-toggle="tab">Datos</a>
       </li>
       <li role="presentation" class="active">
-        <a href="#comics"  role="tab" data-toggle="tab">Comics</a>
+        <a href="#comics"  role="tab" data-toggle="tab">Cómics</a>
       </li>
       <li role="presentation" class="active">
         <a href="#series"  role="tab" data-toggle="tab">Series</a>
@@ -58,12 +58,16 @@
               <th>Descripción comic <%= fa_icon 'info-circle' %></th>            
             </thead>
             <tbody>
-            <% @comics.each do |comic| %>
-              <tr>
-                <td><%= comic["title"] %></td>
-                <td><%= image_tag(comic["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
-                <td><%= comic["description"] %></td>
-              </tr>
+            <% if @comics.present? %>
+              <% @comics.each do |comic| %>
+                <tr>
+                  <td><%= comic["title"] %></td>
+                  <td><%= image_tag(comic["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
+                  <td><%= comic["description"] %></td>
+                </tr>
+              <% end %>
+            <% else %>             
+              <td colspan="3" align="center"><%=@character.name%> no cuenta con algún comic disponible.</td>
             <% end %>
             </tbody>
           </table>
@@ -79,13 +83,17 @@
               <th>Descripción serie <%= fa_icon 'info-circle' %></th>            
             </thead>
             <tbody>
-            <% @series.each do |serie| %>
-              <tr>
-                <td><%= serie["title"] %></td>
-                <td><%= image_tag(serie["thumbnail"].values.join('.'), width: 120, height: 120)  %></td>
-                <td><%= serie["description"] %></td>
-              </tr>
-            <% end %>
+              <% if @series.present? %>
+                <% @series.each do |serie| %>
+                <tr>
+                  <td><%= serie["title"] %></td>
+                  <td><%= image_tag(serie["thumbnail"].values.join('.'), width: 120, height: 120)  %></td>
+                  <td><%= serie["description"] %></td>
+                </tr>
+                <% end %>
+              <% else %>             
+                <td colspan="3" align="center"><%=@character.name%> no cuenta con alguna serie disponible.</td>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -100,12 +108,16 @@
               <th>Descripción evento <%= fa_icon 'info-circle' %></th>              
             </thead>
             <tbody>
-            <% @events.each do |event| %>
-              <tr>
-                <td><%= event["title"] %></td>
-                <td><%= image_tag(event["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
-                <td><%= event["description"] %></td>
-              </tr>
+            <% if @events.present? %>
+              <% @events.each do |event| %>
+                <tr>
+                  <td><%= event["title"] %></td>
+                  <td><%= image_tag(event["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
+                  <td><%= event["description"] %></td>
+                </tr>
+              <% end %>
+             <% else %>             
+                <td colspan="3" align="center"><%=@character.name%> no cuenta con algún evento disponible.</td>
             <% end %>
             </tbody>
           </table>

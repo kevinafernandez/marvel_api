@@ -33,8 +33,10 @@
                 <thead>
                     <tr class="pretty" align="center">
                         <th>
-                            <%= fa_icon 'vcard-o' %>&nbsp; Nombre</th>
-                        <th colspan="3" align="center"> Acciones &nbsp;
+                            <%= fa_icon 'id-card-o' %> Nombre</th>
+                        <th>
+                            <%= fa_icon 'battery-3' %> Poder de ataque</th>
+                        <th colspan="2" align="center"> Acciones 
                             <%= fa_icon 'edit' %>
                         </th>
                     </tr>
@@ -44,6 +46,9 @@
                     <tr>
                         <td align="center">
                             <%= link_to persona.nombre.upcase, persona_path(persona) %>
+                        </td>
+                        <td align="center">
+                            <%= persona.poder_ataque %>
                         </td>
                         <td align="center">
                             <%= link_to persona_path(persona), class: 'btn btn-info btn-xs small' do %>
@@ -58,9 +63,9 @@
                 </tbody>
             </table>
         </div>
-        <%= page_entries_info @personas %>
     </div>
-    <div class="panel-footer">
         <%= paginate @personas %>
+    <div>
+        <%= page_entries_info @personas %>
     </div>
 </div>
