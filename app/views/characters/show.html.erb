@@ -61,7 +61,7 @@
             <% @comics.each do |comic| %>
               <tr>
                 <td><%= comic["title"] %></td>
-                <td><%= comic["thumbnail"] %></td>
+                <td><%= image_tag(comic["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
                 <td><%= comic["description"] %></td>
               </tr>
             <% end %>
@@ -82,7 +82,7 @@
             <% @series.each do |serie| %>
               <tr>
                 <td><%= serie["title"] %></td>
-                <td><%= serie["thumbnail"] %></td>
+                <td><%= image_tag(serie["thumbnail"].values.join('.'), width: 120, height: 120)  %></td>
                 <td><%= serie["description"] %></td>
               </tr>
             <% end %>
@@ -103,7 +103,7 @@
             <% @events.each do |event| %>
               <tr>
                 <td><%= event["title"] %></td>
-                <td><%= event["thumbnail"] %></td>
+                <td><%= image_tag(event["thumbnail"].values.join('.'), width: 120, height: 120) %></td>
                 <td><%= event["description"] %></td>
               </tr>
             <% end %>
