@@ -27,9 +27,10 @@ class PersonasController < ApplicationController
   # POST /personas.json
   def create
     @persona = Persona.new(persona_params)
-
+    @random = Random.rand(100) #valor random para el poder de ataque
     respond_to do |format|
       if @persona.save
+        @persona.update(poder_ataque: @random)
         format.html {  flash[:success] = "La persona #{@persona.nombre} fue creado exitósamente"
                         redirect_to persona_path(@persona)
         }
@@ -74,6 +75,6 @@ class PersonasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def persona_params
-      params.require(:persona).permit(:nombre)
+      params.require(:persona).permit(:nombre, :poder_ataque)
     end
 end

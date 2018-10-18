@@ -6,7 +6,16 @@ class Marvel
     response = self.get("/v1/public/characters/#{id}?#{MarvelParameters.credentials}")
     response_body = JSON.parse(response.body)
     results = response_body['data']['results'][0]
+  end
 
+  def self.foto(id) #consulta foto del character
+    results = Marvel.character(id) 
+    results['thumbnail']['path']
+  end
+
+  def self.description(id) #consulta descripcion del character
+    results = Marvel.character(id) 
+    results['description']
   end
 
   def self.all_characters #obtiene todos los caracteres     
@@ -15,45 +24,27 @@ class Marvel
     results = response_body['data']['results']
   end
 
-  def self.comic(id) #obtiene comic por id
-    response = self.get("/v1/public/comics/#{id}?#{MarvelParameters.credentials}")
-    response_body = JSON.parse(response.body)
-    puts "RESPONSE BODY: #{response_body}"
-    results = response_body['data']['results'][0]
-  end
-
-  def all_comics #obtiene todos los comics de los caracteres
+  def self.all_comics(id) #obtiene todos los comics por caracter
     #get /v1/public/characters/{characterId}/comics
-    response = self.get("/v1/public/characters/#{id}?/comics?#{MarvelParameters.credentials}")
-
+    response = self.get("/v1/public/characters/#{id}/comics?#{MarvelParameters.credentials}")
     response_body = JSON.parse(response.body)
     puts "RESPONSE BODY: #{response_body}"
     results = response_body['data']['results']
   end
 
-  def self.serie(id) #obtiene serie por id
-    response = self.get("/v1/public/series/#{id}?#{MarvelParameters.credentials}")
+  def self.all_series(id) #obtiene todas los series por caracter
+    #get /v1/public/characters/{characterId}/series
+    response = self.get("/v1/public/characters/#{id}/series?#{MarvelParameters.credentials}")
     response_body = JSON.parse(response.body)
     puts "RESPONSE BODY: #{response_body}"
-    results = response_body['data']['results'][0]
-  end
-
-  def self.all_series #obtiene todas las series de los caracteres
-    response = self.get("/v1/public/series?#{MarvelParameters.credentials}")
-    response_body = JSON.parse(response.body)
     results = response_body['data']['results']
   end
 
-  def self.event(id) #obtiene evento por id
-    response = self.get("/v1/public/events/#{id}?#{MarvelParameters.credentials}")
+  def self.all_events(id) #obtiene todos los eventos por caracter
+    #get /v1/public/characters/{characterId}/events
+    response = self.get("/v1/public/characters/#{id}/events?#{MarvelParameters.credentials}")
     response_body = JSON.parse(response.body)
     puts "RESPONSE BODY: #{response_body}"
-    results = response_body['data']['results'][0]
-  end
-
-  def self.all_events #obtiene todos los eventos de los caracteres
-    response = self.get("/v1/public/events?#{MarvelParameters.credentials}")
-    response_body = JSON.parse(response.body)
     results = response_body['data']['results']
   end
 

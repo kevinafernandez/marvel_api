@@ -1,5 +1,5 @@
 <div class="page-header clearfix">
-  <h3><%= fa_icon 'user-circle-o' %> Superheroe <small>Detalle</small> </h3>
+  <h3><%= fa_icon 'ioxhost' %> Superheroe <small>Detalle</small> </h3>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
@@ -8,20 +8,29 @@
   <div class="tabs">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active">
-        <a href="#cabecera" aria-controls="cabecera" role="tab" data-toggle="tab">Datos</a>
+        <a href="#datos" role="tab" data-toggle="tab">Datos</a>
+      </li>
+      <li role="presentation" class="active">
+        <a href="#comics"  role="tab" data-toggle="tab">Comics</a>
+      </li>
+      <li role="presentation" class="active">
+        <a href="#series"  role="tab" data-toggle="tab">Series</a>
+      </li>
+      <li role="presentation" class="active">
+        <a href="#eventos"  role="tab" data-toggle="tab">Eventos</a>
       </li>
     </ul>
   </div>
   <div class="panel-body">
     <div class="tab-content">
       <!-- Cabecera -->
-      <div role="tabpanel" class="tab-pane active" id="cabecera">
+      <div role="tabpanel" class="tab-pane active" id="datos">
         <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <tbody>
             	<tr>
                 <td class="active col-title"><%= fa_icon 'file-image-o'%> Imagen</td>
-                <td class="col-content"><%= image_tag @character.thumbnail + '.jpg', width: 120, height: 120 %></td>
+                <td class="col-content"><%= image_tag @image + '.jpg', width: 120, height: 120 %></td>
               </tr>
               <tr>
                 <td class="active col-title"><%= fa_icon 'ioxhost'%> Nombre</td>
@@ -29,12 +38,75 @@
               </tr>
               <tr>
                 <td class="active col-title"><%= fa_icon 'info-circle'%> Descripción</td>
-                <% if @character.description.present?%>
-                	<td class="col-content"><%=@character.description%></td>
+                <% if @description_character.present?%>
+                	<td class="col-content"><%=@description_character %></td>
                 <%else %>
                 	<td class="col-content"><i>Este superheroe no cuenta con descripción</i></td>
                 <%end %>   
               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+       <!-- Comics -->
+      <div role="tabpanel" class="tab-pane" id="comics">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <th>Título comic <%= fa_icon 'pencil-square-o' %></th>
+              <th>Imagen <%= fa_icon 'file-image-o' %></th>
+              <th>Descripción comic <%= fa_icon 'info-circle' %></th>            
+            </thead>
+            <tbody>
+            <% @comics.each do |comic| %>
+              <tr>
+                <td><%= comic["title"] %></td>
+                <td><%= comic["thumbnail"] %></td>
+                <td><%= comic["description"] %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Series -->
+      <div role="tabpanel" class="tab-pane" id="series">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <th>Título serie <%= fa_icon 'pencil-square-o' %></th>
+              <th>Imagen <%= fa_icon 'file-image-o' %></th>
+              <th>Descripción serie <%= fa_icon 'info-circle' %></th>            
+            </thead>
+            <tbody>
+            <% @series.each do |serie| %>
+              <tr>
+                <td><%= serie["title"] %></td>
+                <td><%= serie["thumbnail"] %></td>
+                <td><%= serie["description"] %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Events -->
+      <div role="tabpanel" class="tab-pane" id="eventos">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <th>Título evento <%= fa_icon 'pencil-square-o' %></th>
+              <th>Imagen <%= fa_icon 'file-image-o' %></th>
+              <th>Descripción evento <%= fa_icon 'info-circle' %></th>              
+            </thead>
+            <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event["title"] %></td>
+                <td><%= event["thumbnail"] %></td>
+                <td><%= event["description"] %></td>
+              </tr>
+            <% end %>
             </tbody>
           </table>
         </div>

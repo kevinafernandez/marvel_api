@@ -147,8 +147,19 @@ label {
   margin-top: 15px;
 }
 
-table {
-    margin: 0 auto;
+table, th, td {
+   border: 1px solid black !important;
+   padding: .55rem !important;
+   margin: 0 auto;
+}
+
+.col-title {
+  width: 35% !important;
+}
+
+
+table, thead{
+   background: #2b3035;
 }
 
 @media (max-width: 768px){
@@ -248,4 +259,8 @@ table {
   .nav-tabs.nav-justified > .active > a:focus {
     border-bottom-color: #fff;
   }
+}
+
+.col-title{
+  background-color: #323841;  
 }

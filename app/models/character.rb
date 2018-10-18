@@ -1,35 +1,25 @@
-class Character
-  attr_accessor :character_id, :name, :thumbnail, :description
+class Character < ApplicationRecord
 
-  def initialize(args)
-    args.each do |key, value|
-      instance_variable_set("@#{key}", value)
-    end
+  def get_image #obtiene imagen por caracter desde la API
+    @image = Marvel.foto(self.id)
   end
 
-  def self.find_all
-    characters = []
-    limit = 35
-    results = Marvel.all_characters #invoca el metodo para obtener todos los caracteres
-    results.each do |result|
-      characters << Character.new(character_id: result['id'],
-                     name: result['name'],
-                     thumbnail: result['thumbnail']['path'],
-                     description: result['description'],
-                     limit: limit)
-    end
-    characters 
+  def get_description #obtiene la descripcion por caracter desde la API
+    @descripcion = Marvel.description(self.id)
   end
 
-  def self.find(id)
-    results = Marvel.character(id) #invoca el metodo para obtener un caracter por id
-    puts "RESPONSE DATA RESULTS: #{results}"
-    Character.new(
-      character_id: results['id'],
-      name: results['name'],
-      thumbnail: results['thumbnail']['path'],
-      description: results['description']
-    )
+  def get_comics #obtiene todos los comics por caracter
+    @comics = Marvel.all_comics(self.id)
   end
+
+  def get_series #obtiene todos los series por caracter
+    @series = Marvel.all_series(self.id)
+  end
+
+  def get_events #obtiene todos los events por caracter
+    @events = Marvel.all_events(self.id)
+  end
+
+
 
 end

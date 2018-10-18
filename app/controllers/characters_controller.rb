@@ -4,66 +4,21 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    @characters = Character.find_all
-    #@characters = @characters.find(1011334)
+    @characters = Character.all
   end
 
   # GET /characters/1
   # GET /characters/1.json
   def show
    @character = Character.find(params[:id])
-   #@comics = @character.get_comics
+   @image = @character.get_image
+   @description_character = @character.get_description
+   @series = @character.get_series 
+   @comics = @character.get_comics
+   @events = @character.get_events 
   end
 
-  # GET /characters/new
-=begin
-  def new
-    @character = Character.new
-  end
-  # GET /characters/1/edit
-  def edit
-  end
 
-  # POST /characters
-  # POST /characters.json
-  def create
-    @character = Character.new(character_params)
-
-    respond_to do |format|
-      if @character.save
-        format.html { redirect_to @character, notice: 'Character was successfully created.' }
-        format.json { render :show, status: :created, location: @character }
-      else
-        format.html { render :new }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /characters/1
-  # PATCH/PUT /characters/1.json
-  def update
-    respond_to do |format|
-      if @character.update(character_params)
-        format.html { redirect_to @character, notice: 'Character was successfully updated.' }
-        format.json { render :show, status: :ok, location: @character }
-      else
-        format.html { render :edit }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /characters/1
-  # DELETE /characters/1.json
-  def destroy
-    @character.destroy
-    respond_to do |format|
-      format.html { redirect_to characters_url, notice: 'Character was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_character
