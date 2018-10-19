@@ -12,11 +12,11 @@ class PersonasController < ApplicationController
 
   def revivir #revive a la persona manualmente
     @persona = Persona.find(params[:id])
-
+    @poder_ataque = Random.rand(100)
     respond_to do |format|
      if @persona.esta_vivo == false
-      if @persona.update(esta_vivo: true)
-        format.html {  flash[:notice] = "¡La persona #{@persona.nombre} ha sido revivida, ahora podrá pelear!"
+      if @persona.update(esta_vivo: true, poder_ataque: @poder_ataque)
+        format.html {  flash[:notice] = "¡La persona #{@persona.nombre} ha sido revivida y con un nuevo poder de ataque, ahora podrá pelear!"
                         redirect_to action: "show"
         }
         format.json { render :show, status: :created, location: @persona }
