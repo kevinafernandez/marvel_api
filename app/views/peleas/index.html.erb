@@ -4,9 +4,25 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="row">
-      <div class="col-md-12" align ="center">
-        <% @total_peleas = Pelea.count %>
-        <span class="btn btn-primary">Cantidad de peleas transcurridas: <b><%= @total_peleas %></b> </span>
+      <div class="col-md-12">
+          <div class= "col-md-3">
+            <% @total_peleas = Pelea.count %>
+            <span class="btn btn-primary btn-xs">Cantidad de peleas transcurridas: <b><%= @total_peleas %></b> 
+            </span>
+          </div>
+        <div class= "col-md-3 pull-right">
+          <% if @personas %>
+            <%= link_to pelear_manualmente_path, method: :get, data: {confirm: "¿Está seguro que desea batallar manualmente? de lo contrario la batalla será cada 10 min."}, class: 'btn btn-success btn-xs small' do %> 
+              Pelear manualmente <%= fa_icon 'handshake-o ' %>
+            <% end %>
+          <%else %>
+               <%= link_to personas_path, class: 'btn btn-danger btn-xs small' do %> 
+              No quedan personas vivas | Revivir<%= fa_icon 'ambulance' %>
+            <%end %>
+          <%end %>
+        </div
+ 
+    
       </div>
     </div>
     </div>

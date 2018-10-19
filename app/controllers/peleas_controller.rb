@@ -6,8 +6,23 @@ class PeleasController < ApplicationController
   def index
     @peleas = Pelea.all
     @peleas = @peleas.page params[:page]
+    @personas = Persona.all.where(esta_vivo: true)
   end
 
+  def pelear_manualmente
+    @persona = Persona.where(esta_vivo: true).order("RANDOM()").first
+    @persona.pelear
+      respond_to do |format|
+        format.html {  flash[:success] = "¡Pelea simulada! ver ultimo."
+                        redirect_to action: "index"
+        }
+        format.json { render :show, status: :created, location: @rankings }
+      else
+        format.html { render :index }
+        format.json { render json: @rankings.errors, status: :unprocessable_entity }
+      end
+ 
+  end
   # GET /peleas/1
   # GET /peleas/1.json
   def show

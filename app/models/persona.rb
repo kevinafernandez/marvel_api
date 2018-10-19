@@ -6,24 +6,7 @@ class Persona < ApplicationRecord
   scope :search, -> (search) { where('lower(nombre) LIKE ?', "%#{search.to_s.downcase}%")} #busqueda por nombre
   scope :by_esta_vivo, lambda { |esta_vivo| where('esta_vivo = ?', esta_vivo) }
   validates :nombre, presence:true, :uniqueness => {:case_sensitive => false} #validacion
-=begin
-- Las interacciones en la plataforma deberán ocurrir cada diez minutos y/o cuando el usuario lo
-  desee.
-- Se debe escoger aleatoriamente una persona, la cual comenzará a luchar.
-- Obtener un superhéroe que no haya peleado durante el día
-- Hacerlo combatir con la persona actual.
-- Si el vencedor es la persona, entonces acumulará un punto y seguirá luchando hasta perder
-- Si la persona actual es derrotada, se termina la ronda y todo vuelve a comenzar con
-  otro individuo. 
-- Una persona derrotada no podrá luchar nuevamente durante el día a no ser que sea revivida
-  manualmente por el usuario; o al final del día, automáticamente.
 
-- Debe existir una vista donde se muestren todas las rondas transcurridas, con las peleas y
-  resultados
-- Debe existir un ranking de personas, generado a partir de sus triunfos en la batalla.
-- El ranking debe resetearse cada día a las 00:00 o cuando el usuario lo desee.
-	
-=end
   def pelear
 
 	persona = self
