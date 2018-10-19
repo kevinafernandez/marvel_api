@@ -1,16 +1,33 @@
 class PersonasController < ApplicationController
-  before_action :set_persona, only: [:show, :edit, :update, :destroy]
+  before_action :set_persona, only: [:show, :edit, :update, :destroy, :revivir]
 
   # GET /personas
   # GET /personas.json
   def index
     @personas = Persona.all
-    @personas = @personas.filter(params.slice(:search)) #parametros para buscar por nombre
+    @by_esta_vivo = params[:by_esta_vivo]
+    @personas = @personas.filter(params.slice(:search, :by_esta_vivo)) #parametros para buscar por nombre
     @personas = @personas.page params[:page] #paginacion
   end
 
-  # GET /personas/1
-  # GET /personas/1.json
+  def revivir #revive a la persona manualmente
+    @persona = Persona.find(params[:id])
+
+    respond_to do |format|
+     if @persona.esta_vivo == false
+      if @persona.update(esta_vivo: true)
+        format.html {  flash[:notice] = "¡La persona #{@persona.nombre} ha sido revivida, ahora podrá pelear!"
+                        redirect_to action: "show"
+        }
+        format.json { render :show, status: :created, location: @persona }
+      else
+        format.html { render :show }
+        format.json { render json: @persona.errors, status: :unprocessable_entity }
+      end
+     end
+    end
+  end
+
   def show
   end
 

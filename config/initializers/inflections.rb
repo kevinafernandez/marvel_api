@@ -16,4 +16,6 @@
     inflect.irregular 'Persona', 'Personas'
     inflect.irregular 'superheroe', 'superheroes'
     inflect.irregular 'Superheroe', 'Superheroes'
+    inflect.irregular 'pelea', 'peleas'
+    inflect.irregular 'Pelea', 'Peleas'
 end

@@ -24,9 +24,22 @@
                 <td class="col-content"><%=@persona&.nombre%></td>
               </tr>
               <tr>
+                <td class="col-title"><%= fa_icon 'ambulance'%> Está viva</td>
+                <%if @persona&.esta_vivo %>
+                 <td class="green"> SÍ <%= fa_icon 'check-circle'%></td>
+                <%else %>
+                 <td class="red"> NO <%= fa_icon 'check-circle'%></td>
+                <%end %>    
+              </tr>
+              <tr>
                 <td class="col-title"><%= fa_icon 'bar-chart'%> Poder de ataque (1-100)</td>
                 <td class="col-content"><%=@persona&.poder_ataque%></td>
               </tr>
+               <tr>
+                <td class="col-title"><%= fa_icon 'hashtag'%> Peleas ganadas en el día</td>
+                <td class="col-content"><%= @persona&.peleas_ganadas_dia%></td>
+              </tr>
+              
               <tr>
                 <td class="col-title"><%= fa_icon 'pie-chart'%> Probabilidad de victoria en una pelea</td>
 

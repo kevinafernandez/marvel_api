@@ -1,4 +1,5 @@
 class Character < ApplicationRecord
+  has_many :peleas
 
   def get_image #obtiene imagen por caracter desde la API
     @image = Marvel.foto(self.id)
@@ -20,6 +21,8 @@ class Character < ApplicationRecord
     @events = Marvel.all_events(self.id)
   end
 
-
+  def self.superheroe
+    @character = self
+  end
 
 end

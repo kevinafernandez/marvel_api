@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@pelea) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :persona %>
+    <%= f.association :character %>
+    <%= f.input :hora_pelea %>
+    <%= f.input :ganador %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -2,67 +2,83 @@
     <h3><%= fa_icon 'user-circle-o' %> Personas <small>Listado</small></h3>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-lg-5 col-centered">
-                <%= form_tag('personas', method: :get) do %>
-                <div class="input-group">
-                    <input id="search" name="search" value="<%= params[:search] %>" type="text" class="form-control" placeholder="Buscar persona por nombre">
-                    <span class="input-group-btn">
-              <button class="btn btn-default" type="submit"><%= fa_icon 'search', text: '' %></button>
-            </span>
-                </div>
-                <% end %>
-            </div>
-            <div class="col-lg-2">
-                <%= link_to personas_path, class: 'btn btn-morado btn-sm' do %>
-                <%= fa_icon 'trash', text: 'Limpiar' %>
-                <% end %>
-            </div>
-            <div class="col-lg-5">
-                <%= link_to new_persona_path, class: 'btn btn-success btn-sm pull-right' do %>
-                <%= fa_icon 'plus', text: 'Crear Persona' %>
-                <% end %>
-            </div>
-        </div>
+ <div class="panel-heading">
+  <%= form_tag personas_path, method: 'get' do %>
+   <div class="row">
+     <div class="col-md-12">
+        <div class="input-group">
+          <div class="col-md-4">
+            <%=label_tag "Busqueda por nombre"%> <%= fa_icon 'search' %>
+                <input id="search" name="search" value="<%= params[:search] %>" type="text" class="form-control" placeholder="Buscar persona por nombre">
+            </div>       
+         
+            <div class="col-md-3">
+            <%=label_tag "¿Persona está viva?"%> <%= fa_icon 'info-circle' %>
+            <%= select_tag('by_esta_vivo', options_for_select([['SI', true], ['NO', false]]), value: @by_esta_vivo ,prompt:'--- Seleccione ---')%>
+          </div>
+      </div>
+    </div>
+  
+    </div>
+   <div class="row">
+    <div class="col-md-12">
+      <div class=" botones">
+        <%=button_tag(type: "submit",class: "btn btn-info btn-sm") do%>
+          <%= fa_icon 'filter', text:'Filtrar'%>
+        <%end%>&nbsp;
+         <%= link_to personas_path, class: 'btn btn-warning btn-sm' do %>
+            <%= fa_icon 'trash', text: 'Limpiar' %>
+        <% end %>&nbsp;
+         <%= link_to new_persona_path, class: 'btn btn-success btn-sm margen-left' do %>
+        <%= fa_icon 'plus', text: 'Crear Persona' %>
+        <% end %>
+      </div>
+    </div>
+    </div>
         <!-- /.row -->
     </div>
+    <% end %>
     <div class="panel-body">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr class="pretty" align="center">
-                        <th>
-                            <%= fa_icon 'id-card-o' %> Nombre</th>
-                        <th>
-                            <%= fa_icon 'battery-3' %> Poder de ataque</th>
-                        <th colspan="2" align="center"> Acciones 
-                            <%= fa_icon 'edit' %>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @personas.each do |persona| %>
-                    <tr>
-                        <td align="center">
-                            <%= link_to persona.nombre.upcase, persona_path(persona) %>
-                        </td>
-                        <td align="center">
-                            <%= persona.poder_ataque %>
-                        </td>
-                        <td align="center">
-                            <%= link_to persona_path(persona), class: 'btn btn-info btn-xs small' do %>
-                            <%= fa_icon 'eye', text: 'Ver' %>
-                            <% end %>
-                            <%= link_to edit_persona_path(persona), class: 'btn btn-warning btn-xs small' do %>
-                            <%= fa_icon 'pencil', text: 'Editar' %>
-                            <% end %>
-                        </td>
-                    </tr>
+     <div class="table-responsive">
+       <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr class="pretty" align="center">
+              <th><%= fa_icon 'id-card-o' %> Nombre</th>
+              <th><%= fa_icon 'battery-3' %> Poder de ataque</th>
+              <th><%= fa_icon 'info-circle' %> Está vivo</th>
+              <th colspan="2" align="center"> Acciones 
+                  <%= fa_icon 'edit' %>
+              </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @personas.order(esta_vivo: :desc).each do |persona| %>
+          <tr>
+            <td align="center"><%= link_to persona.nombre.upcase, persona_path(persona) %>
+            </td>
+            <td align="center"><%= persona.poder_ataque %></td>
+            <% if persona.esta_vivo == true %>
+            <td align="center" class="green"> SÍ <%= fa_icon 'check-circle'%></td>
+            <td align="center"><%= link_to persona_path(persona), class: 'btn btn-info btn-xs small' do %>
+                <%= fa_icon 'eye', text: 'Ver' %>
+                <% end %>
+            </td>
+            <%else%>
+            <td align="center" class="red"> NO <%= fa_icon 'times-circle'%></td>
+            <td align="center">
+                <%= link_to persona_path(persona), class: 'btn btn-info btn-xs small' do %>
+                <%= fa_icon 'eye', text: 'Ver' %>
+                <% end %>
+                <%= link_to revivir_persona_path(persona), method: :get, data: {confirm: "¿Está seguro que desea revivir a #{persona.nombre}? de lo contrario será revivida a las 00:00"}, class: 'btn btn-success btn-xs small' do %> 
+                    Revivir <%= fa_icon 'ambulance' %>
                     <% end %>
-                </tbody>
-            </table>
-        </div>
+            </td>
+            <%end%>
+          </tr>
+          <% end %>
+        </tbody>
+       </table>
+     </div>
     </div>
         <%= paginate @personas %>
     <div>

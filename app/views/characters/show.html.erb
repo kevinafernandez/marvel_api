@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
-    <h4 class="pull-left"><%= @character.name %></h4>
+    <h4 class="pull-left"><%= @character&.name %></h4>
   </div>
   <div class="tabs">
     <ul class="nav nav-tabs" role="tablist">
@@ -34,7 +34,11 @@
               </tr>
               <tr>
                 <td class="active col-title"><%= fa_icon 'ioxhost'%> Nombre</td>
-                <td class="col-content"><%=@character.name%></td>
+                <td class="col-content"><%=@character&.name%></td>
+              </tr>
+              <tr>
+                <td class="active col-title"><%= fa_icon 'bar-chart-o'%> Poder de ataque (1-100)</td>
+                <td class="col-content"><%=@character&.poder_ataque if @character.poder_ataque.present? %></td>
               </tr>
               <tr>
                 <td class="active col-title"><%= fa_icon 'info-circle'%> Descripción</td>
@@ -67,7 +71,7 @@
                 </tr>
               <% end %>
             <% else %>             
-              <td colspan="3" align="center"><%=@character.name%> no cuenta con algún comic disponible.</td>
+              <td colspan="3" align="center"><%=@character&.name%> no cuenta con algún comic disponible.</td>
             <% end %>
             </tbody>
           </table>
@@ -92,7 +96,7 @@
                 </tr>
                 <% end %>
               <% else %>             
-                <td colspan="3" align="center"><%=@character.name%> no cuenta con alguna serie disponible.</td>
+                <td colspan="3" align="center"><%=@character&.name%> no cuenta con alguna serie disponible.</td>
               <% end %>
             </tbody>
           </table>
@@ -117,7 +121,7 @@
                 </tr>
               <% end %>
              <% else %>             
-                <td colspan="3" align="center"><%=@character.name%> no cuenta con algún evento disponible.</td>
+                <td colspan="3" align="center"><%=@character&.name%> no cuenta con algún evento disponible.</td>
             <% end %>
             </tbody>
           </table>

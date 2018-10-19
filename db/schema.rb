@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_222709) do
+ActiveRecord::Schema.define(version: 2018_10_19_022859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_222709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.boolean "ha_peleado", default: false
   end
 
   create_table "marvels", force: :cascade do |t|
@@ -53,11 +54,39 @@ ActiveRecord::Schema.define(version: 2018_10_17_222709) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "peleas", force: :cascade do |t|
+    t.bigint "persona_id"
+    t.bigint "character_id"
+    t.datetime "hora_pelea"
+    t.boolean "ganador_persona"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_peleas_on_character_id"
+    t.index ["persona_id"], name: "index_peleas_on_persona_id"
+  end
+
   create_table "personas", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "poder_ataque", default: 0
+    t.integer "puntos_acumulados", default: 0
+    t.integer "peleas_ganadas_dia", default: 0
+    t.boolean "esta_vivo", default: true
   end
 
+  create_table "rankings", force: :cascade do |t|
+    t.bigint "persona_id"
+    t.bigint "character_id"
+    t.integer "triunfos", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_rankings_on_character_id"
+    t.index ["persona_id"], name: "index_rankings_on_persona_id"
+  end
+
+  add_foreign_key "peleas", "characters"
+  add_foreign_key "peleas", "personas"
+  add_foreign_key "rankings", "characters"
+  add_foreign_key "rankings", "personas"
 end

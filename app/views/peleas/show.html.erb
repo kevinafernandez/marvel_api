@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Persona:</strong>
+  <%= @pelea.persona %>
+</p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @pelea.character %>
+</p>
+
+<p>
+  <strong>Hora pelea:</strong>
+  <%= @pelea.hora_pelea %>
+</p>
+
+<p>
+  <strong>Ganador:</strong>
+  <%= @pelea.ganador %>
+</p>
+
+<%= link_to 'Edit', edit_pelea_path(@pelea) %> |
+<%= link_to 'Back', peleas_path %>
