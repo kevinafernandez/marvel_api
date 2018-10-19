@@ -32,4 +32,4 @@ Versiones de:
   	5.3.- Para ranking de personas: Mismo procedimiento, pero este se realizó desde el controllador de ranking (reset_ranking) y se ejecuta en el mismo bloque de horas (final del dia a las 00:00) punto 5.2
 
 
-* Por ultimo, cabe mencionar que las interraciones automaticas corren con la gema 'whenver' de forma local, y con 'Heroku Scheduler' desde Heroku, ya que esta plataforma no soporta cronjobs, y tienen sus propios jobs automaticos.
+* Por ultimo, cabe mencionar que las interraciones automaticas corren con la gema 'whenver' de forma local, y con 'Heroku Scheduler' desde Heroku, ya que esta plataforma no soporta cronjobs de Rails, y tienen sus propios jobs automaticos.
