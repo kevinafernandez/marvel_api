@@ -11,7 +11,7 @@ class PeleasController < ApplicationController
 
   def pelear_manualmente
     @persona = Persona.where(esta_vivo: true).order("RANDOM()").first
-    @persona.pelear
+    @persona&.pelear
       respond_to do |format|
         format.html {  flash[:success] = "¡Pelea simulada! ver ultimo."
                         redirect_to action: "index"

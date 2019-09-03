@@ -15,7 +15,7 @@ desc "Guarda los caracteres en la base de datos para efectos de la simulacion de
  desc "Peleas" #se ejecuta en schedule.rb
  task peleas: :environment do
  	persona = Persona.where(esta_vivo: true).order("RANDOM()").first
- 	persona.pelear
+ 	persona&.pelear
  end 
 
  desc "Revivir todos las personas" #se ejecuta en schedule.rb

@@ -24,7 +24,7 @@ class Persona < ApplicationRecord
 	   ganador_persona = true
 	   persona.peleas_ganadas_dia += 1 #peleas ganadas por dia
 	   persona.save!
-	   persona.pelear #pelea nuevamente, hasta que poder_ataque llegue a 0 (recursividad)
+	   persona&.pelear #pelea nuevamente, hasta que poder_ataque llegue a 0 (recursividad)
 	  else #persona derrotada
 	     persona.update_column(:esta_vivo, false)
 	     ganador_persona = false
